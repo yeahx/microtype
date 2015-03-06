@@ -1,0 +1,24 @@
+{%- extends "base.html" %}
+{%- import "_macros.html" as macros %}
+        {% block page_content -%}
+        <div class="am-u-md-9">
+            {%- for post in posts %}
+            <article class="blog-main">
+                <h3 class="am-article-title blog-title">
+                    <a href="{{ url_for('main.posts', title = post.title ) }}">{{ post.title }}</a>
+                </h3>
+                <h4 class="am-article-meta blog-meta">
+                    <span class="am-icon-clock-o"></span>
+                    作者: {{ post.author.nickname }} 日期: {{ post.created_at | formatdate }} 标签: <a href="#">{{ post.tag }}</a>
+                </h4>
+                <div class="am-g blog-content">
+                    <div class="am-u-lg-12">
+                         {{ post.content | safe }}
+                    </div>
+                </div>
+            </article>
+            <hr class="am-article-divider blog-hr">
+            {%- endfor %}
+        </div>
+{% include "sidebar.html" %}
+        {%- endblock page_content %}

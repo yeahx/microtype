@@ -1,0 +1,32 @@
+{%- extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="markitup/skins/simple/style.css") }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="markitup/sets/html/style.css") }}" />
+{%- endblock css %}
+{% block page_content -%}
+    <div class="am-u-md-9">
+        <div class="page-header">
+            <h1>编辑文章</h1>
+        </div>
+        <form class="am-form" action="{{ url_for("main.newpost") }}" method="post" id="commentform">
+        <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
+        <input name="post-id" type="hidden" value="{{ post.id }}">
+        <div class="am-form-group">
+            <label for="title">标题:</label> <input type="text" name="title" id="title" value="{{ post.title }}" required />
+            <label for="tag">标签:</label> <input type="text" name="tag" id="tag" value="{{ post.tag }}" required />
+            <label for="html">编辑框:</label><textarea id="html" name="content" cols="40" rows="10">{{ post.content }}</textarea>
+            <button type="submit" class="am-btn am-btn-primary">提交</button>
+        </div>
+        </form>
+    </div>
+{%- endblock page_content %}
+{% block javascript %}
+{{ super() }}
+<script type="text/javascript" src="{{ url_for("static", filename="markitup/jquery.markitup.js") }}"></script>
+<script type="text/javascript" src="{{ url_for("static", filename="markitup/sets/html/set.js") }}"></script>
+<script language="javascript">
+$(document).ready(function()	{
+   $('#html').markItUp(mySettings);
+});
+</script>
+{% endblock javascript %}
