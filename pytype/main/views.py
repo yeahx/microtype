@@ -44,8 +44,9 @@ def editprofile(username = None):
             session["nickname"] = nickname
             if pass1 == None and pass2 == None:
                 user.save()
-            elif pass1 == pass2:
+            elif pass1 == pass2 and pass1 and pass2 != None:
                 user.password = gen_user_passwrod(pass1)
+                print user.password
                 user.save()
             else:
                 user.save()
@@ -109,6 +110,11 @@ def removepost(id=None):
         return redirect(url_for("main.postlist", page=session.get("page")))
     else:
         flash("Need to be at least one post..", 'error')
+
+@main.route("/admin/settings")
+@login_required()
+def settings():
+    pass
 
 @main.route("/tags/<tag>")
 def tags(tag = None):

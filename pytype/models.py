@@ -27,3 +27,13 @@ class Post(db.Document):
 
     def __repr__(self):
         return '<Post %r>' % (self.title)
+
+class Links(db.Document):
+    url = db.StringField(max_length=255, required=True)
+    text = db.StringField(max_length=255)
+
+    def __unicode__(self):
+        return self.url
+
+    def __repr__(self):
+        return '<Links %r>' % (self.url)

@@ -8,6 +8,7 @@
     <link rel="icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="//cdn.amazeui.org/amazeui/2.2.1/css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/github.css') }}" type="text/css">
     {%- block css %}
 
     {%- endblock css %}
@@ -69,7 +70,7 @@
     </div>
     {%- endblock body %}
     <footer class="blog-footer">
-        <small>&copy; Copyright Nightraid. powered by <a href="https://github.com/yeahx/microtype">Flask</a></small>
+        <small>&copy; Copyright Nightraid. powered by <a href="#">Flask</a></small>
     </footer>
     {% block javascript %}
 <!--[if lt IE 9]>
@@ -80,6 +81,8 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script src="//cdn.amazeui.org/amazeui/2.2.1/js/amazeui.min.js"></script>
+<script src="{{ url_for('static', filename='js/highlight.pack.js') }}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <!--<![endif]-->
     {%- endblock %}
 </body>

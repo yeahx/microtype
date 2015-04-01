@@ -7,6 +7,11 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+Include/
+Lib/
+.idea/
+Scripts/
+
 
 # Windows Installer files
 *.cab
@@ -42,6 +47,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+pip-selfcheck.json
 
 # python compile file
 *.pyc
