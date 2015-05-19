@@ -8,6 +8,6 @@ MONGODB_SETTINGS = {
     'db': 'blog',
     'host': '192.168.16.66',
     'port': 27017,
-    'username': 'nightraid',
-    'password': '!@#nimda!@#'
+    'username': 'example',
+    'password': 'example'
 }
