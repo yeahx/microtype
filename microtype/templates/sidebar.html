@@ -1,0 +1,33 @@
+        <div class="am-u-md-3 blog-sidebar">
+
+            <div class="am-panel-group">
+                <section class="am-panel am-panel-default">
+                    <div class="am-panel-hd">关于我</div>
+                    <div class="am-panel-bd">
+                        <p>{{ about_me.about_me }}</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="am-panel-group">
+                <section class="am-panel am-panel-default">
+                    <div class="am-panel-hd">最近文章</div>
+                    <div class="am-list">
+                        {%- for recent_post in recent_posts%}
+                        <li><a href="{{ url_for("main.posts", title=recent_post.title )}}">{{ recent_post.title }}</a></li>
+                        {%- endfor %}
+                    </div>
+                </section>
+            </div>
+             <div class="am-panel-group">
+                <section class="am-panel am-panel-default">
+                    <div class="am-panel-hd">标签</div>
+                    <div class="am-list blog-list">
+                        {%- for tag in tags %}
+                        <li><a href="{{ url_for('main.tags', tag=tag._id) }}">{{ tag._id }} <sup><span class="am-badge am-badge-success am-round">{{ tag.count }}</span></sup></a></li>
+                        {%- endfor %}
+                    </div>
+                </section>
+            </div>
+
+        </div>

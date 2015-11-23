@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+        {% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/post.css') }}" type="text/css">
+        {%- endblock css %}
+        {% block page_content %}
+            <div class="am-u-md-9">
+                <article class="blog-main">
+                    <h1 class="am-article-title title">{{ post.title }}</h1>
+                    <h4 class="am-article-meta blog-meta">
+                    <p>
+                        <span class="am-icon-clock-o"></span>
+                        作者: {{ post.author.nickname }} 日期: {{ post.created_at | formatdate }} 标签: <a href="{{ url_for('main.tags', tag = post.tag) }}">{{ post.tag }}</a>
+                    </p>
+                    </h4>
+                    <hr>
+                      {{ post.content | safe }}
+                </article>
+                <!-- 多说评论框 start -->
+	            <div class="ds-thread" data-thread-key="{{ post.title }}" data-title="{{ post.title }}" data-url="{{ url_for('main.posts' , title = post.title)}}"></div>
+                <!-- 多说评论框 end -->
+                <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                <script type="text/javascript">
+                var duoshuoQuery = {short_name:"maodan"};
+	                (function() {
+		                var ds = document.createElement('script');
+		                ds.type = 'text/javascript';ds.async = true;
+		                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		                ds.charset = 'UTF-8';
+		                (document.getElementsByTagName('head')[0]
+		                || document.getElementsByTagName('body')[0]).appendChild(ds);
+	                })();
+	            </script>
+                <!-- 多说公共JS代码 end -->
+            </div>
+{% include "sidebar.html" %}
+        {%- endblock page_content %}

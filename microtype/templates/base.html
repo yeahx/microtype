@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+{%- block head %}
+    <meta charset="utf-8">
+    {% block title %}<title>{{ title }}</title>{% endblock title %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="//cdn.amazeui.org/amazeui/2.2.1/css/amazeui.min.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/github.css') }}" type="text/css">
+    {%- block css %}
+
+    {%- endblock css %}
+{%- endblock head %}
+</head>
+<body>
+    {%- block navbar %}
+    <header class="am-topbar">
+        <h2 class="am-topbar-brand">
+            <a href="{{ url_for("main.index") }}">Home</a>
+        </h2>
+        <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+            <ul class="am-nav am-nav-pills am-topbar-nav">
+                <!--<li{% if request.path == "/" %} class="am-active"{% elif "index" in request.path %} class="am-active"{% endif %}><a href="{{ url_for("main.index")}}">Index</a></li>-->
+                {%- if g.user %}
+                <li><a href="{{ url_for("auth.logout") }}">Logout</a></li>
+                {%- else %}
+                <li><a href="{{ url_for("auth.login") }}">Login</a></li>
+                {%- endif %}
+                <li{% if "links" in request.path %} class="am-active"{% endif %}><a href="{{ url_for("main.links") }}">Friends</a></li>
+                <li><a href="{{ url_for("main.feed")}}"><span class="am-icon-rss"></span> RSS</a> </li>
+                {%- if g.user %}
+                <li class="am-dropdown" data-am-dropdown="">
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle="" href="javascript:;">Menu <span class="am-icon-caret-down"></span></a>
+                    <ul class="am-dropdown-content">
+                        <li><a href="{{ url_for("main.user", username = g.nickname) }}"><span class="am-icon-user"></span> 资料</a></li>
+                        <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+                        <li><a href="{{ url_for("main.newpost" )}}"><span class="am-icon-edit"></span> 发布文章</a></li>
+                        <li><a href="{{ url_for("main.postlist", page=1) }}"><span class="am-icon-list-alt"></span> 所有文章</a></li>
+                        <li><a href="{{ url_for("auth.logout") }}"><span class="am-icon-power-off"></span> 退出</a></li>
+                    </ul>
+                </li>
+                {%- endif %}
+            </ul>
+            <form class="am-topbar-form am-topbar-right am-form-inline am-topbar-left" role="search" action="#">
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field am-input-sm" placeholder="_(:з」∠)_">
+                </div>
+                <button type="submit" class="am-btn am-btn-default am-btn-sm">Search</button>
+            </form>
+        </div>
+    </header>
+    {%- endblock navbar %}
+    {%- block body %}
+    <div class="am-g am-g-fixed blog-g-fixed">
+        {%- with messages = get_flashed_messages(with_categories=True) %}
+        {%- if messages %}
+            {%- for category, message in messages %}
+                {%- if category =="success" %}
+        <div class="am-alert am-alert-success" data-am-alert><button type="button" class="am-close">&times;</button>{{ message }}</div>
+                {%- else %}
+        <div class="am-alert am-alert-warning" data-am-alert><button type="button" class="am-close">&times;</button>{{ message }}</div>
+                {%- endif %}
+            {%- endfor %}
+        {%- endif %}
+        {%- endwith %}
+        {%- block page_content %}
+        {%- endblock page_content %}
+    </div>
+    {%- endblock body %}
+    <footer class="blog-footer">
+        <small>&copy; Copyright Nightraid. powered by <a href="#">Flask</a></small>
+    </footer>
+    {% block javascript %}
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="//cdn.amazeui.org/amazeui/2.2.1/js/amazeui.legacy.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="//cdn.amazeui.org/amazeui/2.2.1/js/amazeui.min.js"></script>
+<script src="{{ url_for('static', filename='js/highlight.pack.js') }}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!--<![endif]-->
+    {%- endblock %}
+</body>
+</html>

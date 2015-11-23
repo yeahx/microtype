@@ -1,0 +1,23 @@
+{%- extends "base.html" %}
+        {% block page_content %}
+        <div class="am-u-md-9">
+            <h1>资料</h1><hr />
+            <div class="edit_profile">
+                <form class="am-form" method="post" action="{{ url_for("main.editprofile", username=username) }}">
+                <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
+                <div class="am-form-group">
+                    <label for="nickname">昵称:</label>
+                    <input type="text" name="nickname" id="nickname" value="{{ profile.nickname }}" required /><br />
+                    <label for="about_me">介绍:</label>
+                    <input type="text" name="about_me" id="about_me" value="{{ profile.about_me }}" required /><br />
+                    <label for="password1">密码:</label>
+                    <input type="password" name="password1" id="password1" placeholder="password"  /><br />
+                    <label for="password2">确认密码:</label>
+                    <input type="password" name="password2" id="password2" placeholder="password"  /><br />
+                    <br />
+                    <button type="submit" class="am-btn am-btn-primary">更新</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        {%- endblock page_content %}
