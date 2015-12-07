@@ -7,8 +7,8 @@ app = Flask(__name__)
 app.config.from_object(config)
 db = MongoEngine(app)
 from helper_functions import generate_csrf_token
-from pytype.models import Post
-from pytype.models import User
+from microtype.models import Post
+from microtype.models import User
 from .main import main as main_blueprint
 from .auth import auth as auth_blueprint
 app.register_blueprint(main_blueprint)

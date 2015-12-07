@@ -1,9 +1,9 @@
 # -*- coding: utf8 -*-
 from . import auth
 from flask import render_template,request,flash,redirect,url_for,session,abort,g
-from pytype.models import User
-from pytype.config import BLOG_TITLE
-from pytype.helper_functions import check_user_password,login_required
+from microtype.models import User
+from microtype.config import BLOG_TITLE
+from microtype.helper_functions import check_user_password,login_required
 
 @auth.route("/login", methods = ["POST", "GET"])
 def login():

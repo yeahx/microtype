@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-from pytype import app
-from pytype import models,db
-from pytype.helper_functions import generate_fake
+from microtype import app
+from microtype import models,db
+from microtype.helper_functions import generate_fake
 from flask.ext.script import Manager, Shell, Server
 
 manager = Manager(app)

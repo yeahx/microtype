@@ -2,10 +2,10 @@
 import datetime
 from flask import render_template,request,g,flash,redirect,url_for,session,Response
 from werkzeug.contrib.atom import AtomFeed
-from pytype.main import main
-from pytype.models import Post,User
-from pytype.helper_functions import login_required,gen_user_passwrod
-from pytype.config import BLOG_TITLE
+from microtype.main import main
+from microtype.models import Post,User
+from microtype.helper_functions import login_required,gen_user_passwrod
+from microtype.config import BLOG_TITLE
 
 @main.route("/")
 @main.route("/index/<int:page>")
